@@ -1,10 +1,9 @@
-using System;
 using Lessons.Architecture.PM;
 using UnityEngine;
 
 namespace UI.Presenters
 {
-    public sealed class PlayerInfoPresenter : IDisposable
+    public sealed class PlayerInfoPresenter : IChildPresenter
     {
         private readonly PlayerInfoView _playerInfoView;
         private readonly UserInfo _userInfo;
@@ -16,6 +15,9 @@ namespace UI.Presenters
             _userInfo.OnNameChanged += ChangeName;
             _userInfo.OnDescriptionChanged += ChangeDescription;
             _userInfo.OnIconChanged += ChangeUserIcon;
+            ChangeName(userInfo.Name);
+            ChangeUserIcon(userInfo.Icon);
+            ChangeDescription(userInfo.Description);
         }
         
         private void ChangeName(string name)
@@ -33,7 +35,7 @@ namespace UI.Presenters
             _playerInfoView.ChangeUserIcon(icon);
         }
 
-        public void Dispose()
+        public void CloseView()
         {
             _userInfo.OnNameChanged -= ChangeName;
             _userInfo.OnDescriptionChanged -= ChangeDescription;

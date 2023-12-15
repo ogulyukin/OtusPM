@@ -1,12 +1,10 @@
-
-using System;
 using Lessons.Architecture.PM;
 
 namespace UI.Presenters
 {
-    public sealed class LevelUpButtonPresenter : IDisposable
+    public sealed class LevelUpButtonPresenter : IChildPresenter
     {
-        private LevelUpButtonView _levelUpButtonView;
+        private readonly LevelUpButtonView _levelUpButtonView;
         private readonly PlayerLevel _playerLevel;
         
         public LevelUpButtonPresenter(LevelUpButtonView levelUpButtonView, PlayerLevel playerLevel)
@@ -28,17 +26,10 @@ namespace UI.Presenters
 
         private void ChangeExperience(int _)
         {
-            if (_playerLevel.CanLevelUp())
-            {
-                _levelUpButtonView.ToggleButtonActiveness(true);
-            }
-            else
-            {
-                _levelUpButtonView.ToggleButtonActiveness(false);
-            }
+            _levelUpButtonView.ToggleButtonActiveness(_playerLevel.CanLevelUp());
         }
 
-        public void Dispose()
+        public void CloseView()
         {
             _playerLevel.OnExperienceChanged += ChangeExperience;
             _levelUpButtonView.RemoveListener(OnLevelButtonClick);

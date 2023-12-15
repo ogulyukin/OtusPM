@@ -1,11 +1,9 @@
-
-using System;
 using Lessons.Architecture.PM;
 using UnityEngine;
 
 namespace UI.Presenters
 {
-    public sealed class PlayerLevelProgressPresenter : IDisposable
+    public sealed class PlayerLevelProgressPresenter : IChildPresenter
     {
         private readonly PlayerLevel _playerLevel;
         private readonly PlayerLevelProgressView _playerLevelProgressView;
@@ -24,7 +22,7 @@ namespace UI.Presenters
             _playerLevelProgressView.SetNewExperienceValue(xp, maxXp, $"XP: {Mathf.Min(xp, 1000)}/{maxXp}", _playerLevel.CanLevelUp());
         }
         
-        public void Dispose()
+        public void CloseView()
         {
             _playerLevel.OnExperienceChanged -= ChangeExperience;
         }

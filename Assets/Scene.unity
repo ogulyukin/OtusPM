@@ -1929,7 +1929,6 @@ GameObject:
   - component: {fileID: 1095807179}
   - component: {fileID: 1095807178}
   - component: {fileID: 1095807180}
-  - component: {fileID: 1095807181}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -1952,7 +1951,6 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1095807180}
-  - {fileID: 1095807181}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1998,24 +1996,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   helper: {fileID: 302514553}
---- !u!114 &1095807181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1095807177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 388f22f650825a648a10aae63714fb93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPopUpView: {fileID: 1830542992}
-  playerLevelIView: {fileID: 751046592}
-  playerInfoView: {fileID: 176896209}
-  playerStatsView: {fileID: 1739409629}
-  levelUpButtonView: {fileID: 200640418}
-  playerLevelProgressView: {fileID: 516608403}
+  playerPopUpMainView: {fileID: 1830542992}
 --- !u!1 &1254452468
 GameObject:
   m_ObjectHideFlags: 0
@@ -2750,8 +2731,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 108.74379, y: 0}
-  m_SizeDelta: {x: 207.48758, y: 0}
+  m_AnchoredPosition: {x: 108.74376, y: 0}
+  m_SizeDelta: {x: 207.48752, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1739409629
 MonoBehaviour:
@@ -3139,6 +3120,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exitButtonView: {fileID: 1757830113}
+  playerInfoView: {fileID: 176896209}
+  playerLevelView: {fileID: 751046592}
+  playerLevelProgressView: {fileID: 516608403}
+  levelUpButtonView: {fileID: 200640418}
+  playerStatsView: {fileID: 1739409629}
 --- !u!1 &1916072669
 GameObject:
   m_ObjectHideFlags: 0

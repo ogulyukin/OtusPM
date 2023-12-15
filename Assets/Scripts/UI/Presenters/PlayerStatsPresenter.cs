@@ -1,9 +1,8 @@
-using System;
 using Lessons.Architecture.PM;
 
 namespace UI.Presenters
 {
-    public sealed class PlayerStatsPresenter : IDisposable
+    public sealed class PlayerStatsPresenter : IChildPresenter
     {
         private readonly PlayerStatsView _playerStatsView;
         private readonly CharacterInfo _characterInfo;
@@ -38,7 +37,7 @@ namespace UI.Presenters
            RedrawStats();
         }
         
-        public void Dispose()
+        public void CloseView()
         {
             _characterInfo.OnStatAdded -= AddStat;
             _characterInfo.OnStatRemoved -= RemoveStat;

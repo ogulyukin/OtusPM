@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Lessons.Architecture.PM;
+using UI;
 using UI.Presenters;
 using UnityEngine;
 using Zenject;
@@ -9,10 +10,10 @@ namespace Tools
 {
     public sealed class PlayerPopupHelper : MonoBehaviour
     {
-        private PlayerPopupPresenter _presenter;
         private PlayerLevel _playerLevel;
         private UserInfo _userInfo;
         private CharacterInfo _characterInfo;
+        private PlayerPopUpMainView _playerPopUpMainView;
 
         //Used in custom editor
         public int currentLevel;
@@ -25,9 +26,9 @@ namespace Tools
         public readonly List<CharacterStat> CharacterStats = new();
 
         [Inject]
-        private void Construct(PlayerPopupPresenter presenter, PlayerLevel playerLevel, UserInfo userInfo, CharacterInfo characterInfo)
+        private void Construct(PlayerPopUpMainView mainPopUpView, PlayerLevel playerLevel, UserInfo userInfo, CharacterInfo characterInfo)
         {
-            _presenter = presenter;
+            _playerPopUpMainView = mainPopUpView;
             _playerLevel = playerLevel;
             _userInfo = userInfo;
             _characterInfo = characterInfo;
@@ -59,7 +60,10 @@ namespace Tools
 
         public void ShowPopup()
         {
-            _presenter.ShowPlayerPopup(true);
+            if (!_playerPopUpMainView.gameObject.activeSelf)
+            {
+                var _ = new PlayerPopupMainPresenter(_playerPopUpMainView, _playerLevel, _userInfo, _characterInfo);
+            }
         }
 
         public void ChangeName()
@@ -81,7 +85,7 @@ namespace Tools
         {
             ChangeName();
             ChangeUserDescription();
-            ChangeUserDescription();
+            ChangeUserIcon();
             AddNewStat();
             AddNewStat();
             AddNewStat();

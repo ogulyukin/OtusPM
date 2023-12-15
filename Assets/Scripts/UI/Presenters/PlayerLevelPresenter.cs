@@ -1,27 +1,26 @@
-using System;
 using Lessons.Architecture.PM;
 
 namespace UI.Presenters
 {
-    public sealed class PlayerLevelPresenter : IDisposable
+    public sealed class PlayerLevelPresenter : IChildPresenter
     {
-        private readonly PlayerLevelIView _playerLevelIView;
+        private readonly PlayerLevelView _playerLevelView;
         private readonly PlayerLevel _playerLevel;
 
-        public PlayerLevelPresenter(PlayerLevelIView playerLevelIView, PlayerLevel playerLevel)
+        public PlayerLevelPresenter(PlayerLevelView playerLevelView, PlayerLevel playerLevel)
         {
             _playerLevel = playerLevel;
             _playerLevel.OnLevelUp += ChangeLevel; 
-            _playerLevelIView = playerLevelIView;
+            _playerLevelView = playerLevelView;
             ChangeLevel();
         }
 
         private void ChangeLevel()
         {
-            _playerLevelIView.SetPlayerLevelText($"Level: {_playerLevel.CurrentLevel}");
+            _playerLevelView.SetPlayerLevelText($"Level: {_playerLevel.CurrentLevel}");
         }
-
-        public void Dispose()
+        
+        public void CloseView()
         {
             _playerLevel.OnLevelUp -= ChangeLevel; 
         }
