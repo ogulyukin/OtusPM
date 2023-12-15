@@ -11,11 +11,11 @@ namespace UI
         [SerializeField] private Sprite normalSlider;
         [SerializeField] private Sprite finishedSlider;
 
-        public void SetNewExperienceValue(int xp, int maxXp, bool canLevelUp)
+        public void SetNewExperienceValue(int xp, int maxXp , string textForSlider, bool canLevelUp)
         {
             xpSlider.maxValue = maxXp;
             xpSlider.value = xp;
-            sliderText.text = $"XP: {Mathf.Min(xp, 1000)}/{maxXp}";
+            sliderText.text = textForSlider;
             xpSlider.fillRect.GetComponent<Image>().sprite = canLevelUp ? finishedSlider : normalSlider;
         }
     }

@@ -1,6 +1,7 @@
 
 using System;
 using Lessons.Architecture.PM;
+using UnityEngine;
 
 namespace UI.Presenters
 {
@@ -20,7 +21,7 @@ namespace UI.Presenters
         private void ChangeExperience(int xp)
         {
             var maxXp = _playerLevel.RequiredExperience;
-            _playerLevelProgressView.SetNewExperienceValue(xp, maxXp, _playerLevel.CanLevelUp());
+            _playerLevelProgressView.SetNewExperienceValue(xp, maxXp, $"XP: {Mathf.Min(xp, 1000)}/{maxXp}", _playerLevel.CanLevelUp());
         }
         
         public void Dispose()
